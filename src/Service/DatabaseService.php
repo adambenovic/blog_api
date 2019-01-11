@@ -2,9 +2,9 @@
 
 namespace App\Service;
 
-use App\Entity\Blog;
 use App\Repository\BlogRepository;
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -28,7 +28,7 @@ class DatabaseService
         $this->blogRepo = $blogRepo;
     }
 
-    public function loadHomepagePosts ()
+    public function loadHomepagePosts(): array
     {
         $repo = $this->em->getRepository('App:Blog');
         $blogs = $repo->loadBlogs();

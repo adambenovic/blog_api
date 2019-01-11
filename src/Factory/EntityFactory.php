@@ -19,10 +19,13 @@ class EntityFactory
     /**
      * @return Blog new Blog object with Author set
      */
-    public function createBlogPost(): Blog
+    public function createBlogPost($data): Blog
     {
         $blog = new Blog();
         $blog->setAuthor($this->security->getUser());
+        $blog->setBlog($data['body']);
+        $blog->setTitle($data['title']);
+        $blog->setTags($data['tags']);
 
         return $blog;
     }

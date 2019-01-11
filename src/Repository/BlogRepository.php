@@ -16,7 +16,7 @@ class BlogRepository extends BaseRepository
     /**
      * @return Blog[] Returns an array of Blog objects
      */
-    public function loadBlogs() :array
+    public function loadBlogs(): array
     {
         return $this->findBy(array(), array('id' => 'DESC'));
     }
@@ -25,7 +25,7 @@ class BlogRepository extends BaseRepository
      * @param User $user
      * @return Blog[] Returns an array of Blog objects
      */
-    public function findUserBlogs(User $user) :array
+    public function findUserBlogs(User $user): array
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.author = :val')
