@@ -2,25 +2,29 @@
 
 namespace App\Handler\Posts;
 
-use App\Service\DatabaseService;
+use App\Repository\BlogRepository;
 
 class GetPostsHandler
 {
-    private $dbService;
+    private $blogRepo;
 
     public function __construct(
-        DatabaseService $dbService
+        BlogRepository $blogRepo
     ){
-        $this->dbService = $dbService;
+        $this->blogRepo = $blogRepo;
     }
 
     public function handleMultiple(): array
     {
-        return $this->dbService->loadHomepagePosts();
+        $blogs = $this->blogRepo->loadBlogs();
+
+        return $blogs;
     }
 
     public function handleSingle(int $id)
     {
-        return $this->dbService->loadShowPost($id);
+        $blog = $this->blogRepo->find($id);
+
+        return $blog;
     }
 }

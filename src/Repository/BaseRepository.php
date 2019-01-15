@@ -7,7 +7,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 abstract class BaseRepository extends ServiceEntityRepository implements RepositoryInterface
 {
-    public function __construct(RegistryInterface $registry, String $entity)
+    public function __construct(RegistryInterface $registry, string $entity)
     {
         parent::__construct($registry, $entity);
     }

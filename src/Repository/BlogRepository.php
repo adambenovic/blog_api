@@ -39,16 +39,24 @@ class BlogRepository extends BaseRepository
     /**
      * @param int $id ID of post to be found
      * @return Blog Returns one blog object or null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws
      */
     public function findBlogById(int $id): ?Blog
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.id= :val')
-            ->setParameter('val', $id)
-            ->getQuery()
-            ->getOneOrNullResult()
+        $blog = null;
+        try {
+            $blog = $this->createQueryBuilder('a')
+                ->andWhere('a.id= :val')
+                ->setParameter('val', $id)
+                ->getQuery()
+                ->getOneOrNullResult()
             ;
+        }
+        catch (\Doctrine\ORM\NonUniqueResultException $exception) {
+            echo "This should never happen. NEVER!";
+        }
+
+        return $blog;
     }
 
     /**
