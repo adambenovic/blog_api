@@ -57,7 +57,7 @@ class CommentsController extends AbstractController
     }
 
     /**
-     * @Route("", methods={GET}, name="sidebar_comments")
+     * @Route("", methods={"GET"}, name="sidebar_comments")
      * @return JsonResponse
      */
     public function getSidebarComments()
@@ -70,7 +70,7 @@ class CommentsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", methods={GET}, name="post_comments", requirements={"id"="\d+"})
+     * @Route("/{id}", methods={"GET"}, name="post_comments", requirements={"id"="\d+"})
      * @param int $id
      * @return JsonResponse
      */
@@ -84,7 +84,7 @@ class CommentsController extends AbstractController
     }
 
     /**
-     * @Route("", methods={POST},name="post_comment")
+     * @Route("", methods={"POST"},name="post_comment")
      * @param Request $request
      * @return JsonResponse
      */

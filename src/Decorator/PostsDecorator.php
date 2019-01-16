@@ -21,8 +21,14 @@ class PostsDecorator
         ];
     }
 
-    public function decorateMultiplePosts(array $posts): array
+    /**
+     * @param array $posts
+     * @return array|null
+     */
+    public function decorateMultiplePosts(array $posts)
     {
+        $result = null;
+
         foreach ($posts as $post) {
             $result[] = $this->decorate($post);
         }
