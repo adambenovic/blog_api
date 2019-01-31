@@ -20,6 +20,8 @@ class CommentsDecorator
 
     public function decorateMultipleComments(array $comments)
     {
+        $result = [];
+
         foreach ($comments as $comment) {
             $result[] = $this->decorate($comment);
         }

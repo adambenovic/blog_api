@@ -92,7 +92,6 @@ class CommentsController extends AbstractController
     {
         $requestContent = $request->getContent();
         $data = json_decode($requestContent, true);
-        $data = $data['data'];
         $this->postCommentHandler->handle($data);
 
         return new JsonResponse(null, HttpCode::HTTP_CODE_NO_CONTENT);

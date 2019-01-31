@@ -4,6 +4,7 @@
 namespace App\Handler\Comments;
 
 use App\Entity\Comment;
+use App\Repository\BlogRepository;
 use App\Repository\CommentRepository;
 use App\Repository\UserRepository;
 
@@ -20,16 +21,24 @@ class PostCommentHandler
     private $commentRepo;
 
     /**
+     * @var BlogRepository
+     */
+    private $blogRepo;
+
+    /**
      * PostCommentHandler constructor.
      * @param UserRepository $userRepo
      * @param CommentRepository $commentRepo
+     * @param BlogRepository $blogRepo
      */
     public function __construct(
         UserRepository $userRepo,
-        CommentRepository $commentRepo
+        CommentRepository $commentRepo,
+        BlogRepository $blogRepo
     ){
         $this->userRepo = $userRepo;
         $this->commentRepo = $commentRepo;
+        $this->blogRepo = $blogRepo;
     }
 
     /**
@@ -38,7 +47,7 @@ class PostCommentHandler
     public function handle(array $data)
     {
         $comment = new Comment();
-        $comment->setBlog($data['post_id']);
+        $comment->setBlog($this->blogRepo->findBlogById($data['post_id']));
         $comment->setAuthor($this->userRepo->getUserByID($data['author_id']));
         $comment->setComment($data['comment']);
 
